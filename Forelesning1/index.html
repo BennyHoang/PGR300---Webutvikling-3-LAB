@@ -3,31 +3,86 @@
 
 <head>
     <title>Bootstrap Forelesning 1</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <style>
+        .margin-bottom-10 {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <div>
-        <header>
+    <div class="container">
+        <header class="page-header">
             <h1>ActionPacktion</h1>
         </header>
-        <nav>
-            <ul>
-                <li><a href="#ng1">Home</li>
-                <li><a href="#ng2">About</li>
-                <li><a href="#ng3">Contact</li>
-                <li><a href="#ng4">Products</li>
-                <li><a href="#ng5">Jobs</li>
-            </ul>
+        <nav class="navbar navbar-default ">
+
+            <div>
+                <button>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#ng1">Home</a></li>
+                    <li><a href="#ng2">About</a></li>
+                    <li><a href="#ng3">Contact</a></li>
+                    <li><a href="#ng4">Products</a></li>
+                    <li><a href="#ng5">Jobs</a></li>
+                </ul>
+            </div>
+
         </nav>
-        <section>
-            <article>
+        <aside>
+            <img class="hidden-xs img-responsive" src="movie-covers/dark_knight_banner.jpg" alt="Banner Dark Knight">
+        </aside>
+        <section class="row">
+            <article class="col-xs-12 col-md-4 col-lg-3">
                 <h3>Batman V Superman</h3>
-                <img src="movie-covers/batman-vs-superman.jpg">
-                <input type="button" value="more info">
-                <input type="button" value="Buy">
+                <img class="img-responsive margin-bottom-10" src="movie-covers/batman-vs-superman.jpg">
+                <input class="btn btn-primary" type="button" value="more info">
+                <input class="btn btn-success" type="button" value="Buy">
+            </article>
+            <article class="col-xs-12 col-md-4 col-lg-3">
+                <h3>Star trek</h3>
+                <img class="img-responsive margin-bottom-10" src="movie-covers/star-trek-beyond.jpg">
+                <input class="btn btn-primary" type="button" value="more info">
+                <input class="btn btn-success" type="button" value="Buy">
+            </article>
+            <article class="col-xs-12 col-md-4 col-lg-3">
+                <h3>x-men apocalypse</h3>
+                <img class="img-responsive margin-bottom-10" src="movie-covers/xmen-apocalypse.jpg">
+                <input class="btn btn-primary" type="button" value="more info">
+                <input class="btn btn-success" type="button" value="Buy">
+            </article>
+
+            <article class="col-xs-12 col-md-4 col-lg-3 ">
+                <h3>Batman V Superman</h3>
+                <img class="img-responsive margin-bottom-10" src="movie-covers/batman-vs-superman.jpg">
+                <input class="btn btn-primary" type="button" value="more info">
+                <input class="btn btn-success" type="button" value="Buy">
+            </article>
+            <div class="clearfix visible-lg"></div>
+            <article class="col-xs-12 col-md-4 col-lg-3">
+                <h3>Star trek</h3>
+                <img class="img-responsive margin-bottom-10" src="movie-covers/star-trek-beyond.jpg">
+                <input class="btn btn-primary" type="button" value="more info">
+                <input class="btn btn-success" type="button" value="Buy">
+            </article>
+            <article class="col-xs-12 col-md-4 col-lg-3">
+                <h3>x-men apocalypse</h3>
+                <img class="img-responsive margin-bottom-10" src="movie-covers/xmen-apocalypse.jpg">
+                <input class="btn btn-primary" type="button" value="more info">
+                <input class="btn btn-success" type="button" value="Buy">
             </article>
         </section>
     </div>
+    <script src="https://code.jquery.com/jquery-3.1.0.slim.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
