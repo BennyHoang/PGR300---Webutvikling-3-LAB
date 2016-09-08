@@ -26,7 +26,10 @@
                     AJAX_APP.fileContentSpan = document.getElementById("fileContentSpan");
                     alert("TWERKS!!!!!!");
                 }();
-                AJAX_APP.doAjaxGET();
+                setInterval(function(){
+                    AJAX_APP.doAjaxGET();
+                },4000);
+                
             },
 
             doAjaxGET: function(){
