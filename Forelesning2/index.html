@@ -11,17 +11,22 @@
         <h3>Her kommer innhold fra tekstfil:
             <span id="fileContentSpan"></span>
         </h3>
+        
     </div>
     <script>
         var AJAX_APP = {
+            
+            fileName: "file.txt",
             //HTML OBJECTS
             fileContentSpan: null, 
+            
             
             init: function(){
                 var setHTMLObjects = function(){
                     AJAX_APP.fileContentSpan = document.getElementById("fileContentSpan");
                     alert("TWERKS!!!!!!");
                 }();
+                AJAX_APP.doAjaxGET();
             },
 
             doAjaxGET: function(){
@@ -36,11 +41,14 @@
                     }
                 }
                 
+                xhr.open("GET", AJAX_APP.fileName, true);
+                xhr.send();
             }
 
 
     };
     AJAX_APP.init();
+    
     </script>
 </body>
 
