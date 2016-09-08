@@ -29,6 +29,13 @@
                 if(window.XMLHttpRequest){
                     xhr = new XMLHttpRequest();
                 }
+
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState === 4){
+                        AJAX_APP.fileContentSpan.innerHTML = xhr.responseText;
+                    }
+                }
+                
             }
 
 
