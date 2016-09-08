@@ -22,7 +22,15 @@
                     AJAX_APP.fileContentSpan = document.getElementById("fileContentSpan");
                     alert("TWERKS!!!!!!");
                 }();
+            },
+
+            doAjaxGET: function(){
+                var xhr = null;
+                if(window.XMLHttpRequest){
+                    xhr = new XMLHttpRequest();
+                }
             }
+
 
     };
     AJAX_APP.init();
