@@ -22,37 +22,42 @@
 </head>
 
 <body>
-<div class="container">
-    <header class="page-header">
-        <h1>JS-Framework/libraries</h1>
-    </header>
-    <nav class="navbar navbar-inverse">
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="#index" id="indexA">Home</a></li>
-            <li><a href="#developersA" id="developersA">Developers</a></li>
-            <li><a href="#technologiesA" id="technologiesA">Technologies</a></li>
-        </ul>
-    </nav>
-    <main id="mainContent" class="row"></main>
-</div>
-<script>
+    <div class="container">
+        <header class="page-header">
+            <h1>JS-Framework/libraries</h1>
+        </header>
+        <nav class="navbar navbar-inverse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#index" id="indexA">Home</a></li>
+                <li><a href="#developersA" id="developersA">Developers</a></li>
+                <li><a href="#technologiesA" id="technologiesA">Technologies</a></li>
+            </ul>
+        </nav>
+        <main id="mainContent" class="row"></main>
+    </div>
+    <script>
     var $mainContent;
 
     var init = function(){
-
         var setHTMLObjects = function(){
             $mainContent = $("#mainContent");
         }();
 
         var setEvents = function(){
             $("#indexA").on("click", function(){
-                setPage("index");    
+                setPage("index");   
+                $('.nav li').removeClass('active');
+                checkIfActive(this);      
             });
             $("#technologiesA").on("click", function(){
-                setPage("technologies");    
+                setPage("technologies");
+                $('.nav li').removeClass('active');
+                checkIfActive(this);   
             });
             $("#developersA").on("click", function(){
-                setPage("developers");    
+                setPage("developers");
+                $('.nav li').removeClass('active');
+                checkIfActive(this);     
             });
         }();    
         
@@ -61,7 +66,13 @@
     }();//end init
 
     function setPage(pageName){
-        $mainContent.load("content-pages/" + pageName + ".html");    
+        $mainContent.load("content-pages/" + pageName + ".html");
+    }
+    function checkIfActive(anchor){
+            var $this = $(anchor);
+            if (!$this.parent().closest('li').hasClass('active')) {
+                $this.parent().closest('li').addClass('active');
+            }    
     }
     
 </script>
