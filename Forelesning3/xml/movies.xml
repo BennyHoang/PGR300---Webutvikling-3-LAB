@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8">
+<movies>
+    <movie>
+        <id>1000</id>
+        <title>Batman vs. Superman</title>
+        <description>Batman beats the crap out of superman dawg!</description>
+        <imageSrc>batman-vs-superman.jpg</imageSrc>
+    </movie>
+    <movie>
+        <id>1001</id>
+        <title>Star trek beyond</title>
+    <description>WHERE IS SPOCK!?!?!!?!?!?!?</description>
+        <imageSrc>star-trek.beyond.jpg</imageSrc>
+    </movie>
+    <movie>
+        <id>1002</id>
+        <title>xmen apocalypse</title>
+        <description>XAVIER IS SO YOUNG??!?!!</description>
+        <imageSrc>xmen-apocalypse.jpg</imageSrc>
+    </movie>
+</movies>
