@@ -46,17 +46,14 @@
         var setEvents = function(){
             $("#indexA").on("click", function(){
                 setPage("index");   
-                $('.nav li').removeClass('active');
                 checkIfActive(this);      
             });
             $("#technologiesA").on("click", function(){
                 setPage("technologies");
-                $('.nav li').removeClass('active');
                 checkIfActive(this);   
             });
             $("#developersA").on("click", function(){
                 setPage("developers");
-                $('.nav li').removeClass('active');
                 checkIfActive(this);     
             });
         }();    
@@ -73,6 +70,7 @@
             if (!$this.parent().closest('li').hasClass('active')) {
                 $this.parent().closest('li').addClass('active');
             }    
+            $('.nav li').removeClass('active');
     }
     
 </script>
