@@ -17,6 +17,7 @@ $("document").ready(function () {
 
         var setEvents = function () {
             $showAllBtn.on("click", showAll);
+            $showSearchByTitleBtn.on("click", showSearchByTitle);
         } ();
 
         var initPage = function () {
@@ -25,7 +26,38 @@ $("document").ready(function () {
         getMoviesXML();
     } ();
 
+    function showSearchByTitle() {
+        $mainContent.html("");
+        $(moviesXMLObject)
+            .find("movie")
+            .each(function () {
+                var title = $("title", this).text();
+                var searchTerm = $titleSearchTxt.val();
+                var searchMatch = title.toLowerCase().indexOf(searchTerm.toLowerCase());
+
+                if (searchMatch !== -1) {
+                    var imageSrc = $("imageSrc", this).text();
+                    var $newTitle = $("<h3>").html(title);
+                    var $newImage = $("<img>")
+                        .attr(
+                        {
+                            src: "images/" + imageSrc,
+                            alt: title
+                        }
+                        )
+                        .addClass("img-responsive");
+
+                    var $newArticle = $("<article>")
+                        .addClass("col-md-3")
+                        .append($newTitle, $newImage);
+
+                    $mainContent.append($newArticle);
+                }
+            })
+    }
     function showAll() {
+        $mainContent.html("");
+
         $(moviesXMLObject)
             .find("movie")
             .each(function () {
@@ -42,32 +74,38 @@ $("document").ready(function () {
                     )
                     .addClass("img-responsive");
                 var $newArticle = $("<article>")
-                    .addClass("col-md-")
+                    .addClass("col-md-3")
                     .append($newTitle, $newImage);
                 $mainContent.append($newArticle);
             });
     }
 
     function getMoviesXML() {
-        $.ajax(
+            $.ajax(
             {
                 method: "GET",
                 url: "xml/movies.xml",
                 dataType: "xml",
                 async: true,
-                beforeSend: function () {
-                    console.log("Skal sende snart!");
-                },
-                success: function (xmlResult) {
+
+                beforeSend: function(){
+                    console.log("Skal sende snart");
+                    $mainContent
+                        .append("<div class='col-md-12'><p class='alert alert-warning'>XML-filen laster...</p></div>")
+                }, 
+                success: function(xmlResult){
                     moviesXMLObject = xmlResult;
+                    $(".alert")
+                        .html("XML på plass :)")
+                        .delay(1000).fadeOut(3000);
                 },
-                error: function (xhr, statusText, errorMsg) {
+                error: function(xhr, statusText, errorMsg){
                     console.log(xhr + " " + statusText + " " + errorMsg);
                 },
-                complete: function () {
+                complete: function(){
                     console.log("Complete");
-                }
+                }                
             }
-        );
+        );//end ajax call
     }
 });
