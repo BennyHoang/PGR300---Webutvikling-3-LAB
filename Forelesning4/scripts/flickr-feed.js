@@ -35,7 +35,8 @@ $(function () {
 
         $.getJSON(url, flickrConfig)
             .done(function (result) {
-                //console.log(result.items[0].title);
+                console.log(result.items[0].title);
+                showFlickrFeed(result)
             })
             .fail(function () {
                 console.log("Error");
@@ -43,7 +44,37 @@ $(function () {
     }
 
     //Show flickr feed
+    function showFlickrFeed(feed) {
 
+        $(feed.items).each(function () {
 
+            var title = this.title;
+            var imageUrl = this.media.m;
 
+            var $article = $("<article>")
+                .addClass("col-md-6");
+            
+            var $thumbnail = $("<div>")
+                .addClass("thumbnail");
+            
+            var $caption = $("<div>")
+                .addClass("caption");
+
+            var $image = $("<img>")
+                .attr({ src: imageUrl, alt: title })
+                .addClass("img-responsive");
+            
+            var $title = $("<h3>").html(title);
+
+            $article
+                .append(
+                    $thumbnail
+                        .append(
+                            $image,
+                            $caption
+                                .append($title)
+                            )
+                );
+        });
+    }
 });
