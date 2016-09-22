@@ -45,7 +45,7 @@ $(function () {
 
     //Show flickr feed
     function showFlickrFeed(feed) {
-
+        $mainContent.html("");
         $(feed.items).each(function () {
 
             var title = this.title;
@@ -53,28 +53,29 @@ $(function () {
 
             var $article = $("<article>")
                 .addClass("col-md-6");
-            
+
             var $thumbnail = $("<div>")
                 .addClass("thumbnail");
-            
+
             var $caption = $("<div>")
                 .addClass("caption");
 
             var $image = $("<img>")
                 .attr({ src: imageUrl, alt: title })
                 .addClass("img-responsive");
-            
+
             var $title = $("<h3>").html(title);
 
             $article
                 .append(
-                    $thumbnail
-                        .append(
-                            $image,
-                            $caption
-                                .append($title)
-                            )
+                $thumbnail
+                    .append(
+                    $image,
+                    $caption
+                        .append($title)
+                    )
                 );
+            $mainContent.append($article);
         });
     }
 });
