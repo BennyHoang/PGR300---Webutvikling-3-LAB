@@ -51,9 +51,7 @@ $(function () {
             var title = this.title;
             var imageUrl = this.media.m;
 
-            var $article = $("<article>")
-                .addClass("col-md-6");
-
+            var $article = $("<article>");
             var $thumbnail = $("<div>")
                 .addClass("thumbnail");
 
@@ -77,5 +75,7 @@ $(function () {
                 );
             $mainContent.append($article);
         });
+            $("article", $mainContent)
+                .addClass("col-md-6");
     }
 });
