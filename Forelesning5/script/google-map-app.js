@@ -28,7 +28,22 @@ $(function () {
             };
             googleMapObject = new google.maps.Map($googleMapSection, googleMapConfig);
         } ();
+        createMarker(24, 134, 3);
     } ();
 
     //application logic
+    function createAllMarkers(){
+
+    }
+    function createMarker(latitude, longtitude, information){
+        var newMarker = new google.maps.Marker(
+            {
+                title: information,
+                label: "T",
+                position: new google.maps.LatLng(latitude,longtitude),
+                map: googleMapObject,
+                information: information
+            }
+        );
+    }
 });
