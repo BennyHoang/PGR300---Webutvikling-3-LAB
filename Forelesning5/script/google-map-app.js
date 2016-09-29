@@ -5,20 +5,23 @@ $(function () {
     var $googleMapSection;
 
     //Google map Objects
-    var googleMapObject = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson";
-    var apiKey = "AIzaSyAcAnbCzEI69jMH6aAkLfJYyyX3U8ED0F8";
+    var googleMapObject;
+    var usGovUrl = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson";
     //US GOV API URL
 
     //init
     var init = function () {
         var setHTMLObjects = function () {
-            $getEarthQuakesBtn = $("#getEarthQuakesBtn");
+            $getEarthQuakesBtn = $("#getEarthquakesBtn");
             $markerInformationSpan = $("#markerInformationSpan");
             $googleMapSection = $("#googleMapSection").get(0);
         } ();
 
         var setEvents = function () {
-
+            $getEarthQuakesBtn.on("click", function(){
+                getUSGovFeed();
+                alert("SUX MAN");
+            })
         } ();
 
         var initGoogleMap = function () {
@@ -28,26 +31,43 @@ $(function () {
             };
             googleMapObject = new google.maps.Map($googleMapSection, googleMapConfig);
         } ();
-        createMarker(24, 134, 1);
-        createMarker(-24, -134, 2);
-        createMarker(-54, 234, 2);
-        createMarker(-14, 44, 2);
-
+        createMarker(24, 134, "oslo");
+        createMarker(-24, -134, "trondheim");
+        createMarker(-54, 234, "stavanger");
+        createMarker(-14, 44, "bergen");
     } ();
-
-    //application logic
-    function createAllMarkers(){
-
+    function getUSGovFeed(){
+        $.getJSON(usGovUrl)
+            .done(function(eqResult){
+                alert("SUX MAN");
+                createAllMarkers(eqResult.features);
+            })
+            .fail(function(){
+                alert("fail!");
+            });
     }
-    function createMarker(latitude, longtitude, information){
+    //application logic
+    function createAllMarkers(earthquakes){
+        $.each(earthquakes, function(i, earthquakes){
+            var title = earthquakes.properties.place;
+            var latitude = earthquakes.geometry.coordinates[1];
+            var longitude =  earthquakes.geometry.coordinates[0];
+            createMarker(latitude,longitude,title);
+       });
+    }
+    function createMarker(latitude, longitude, information){
         var newMarker = new google.maps.Marker(
             {
                 title: information,
                 label: "T",
-                position: new google.maps.LatLng(latitude,longtitude),
+                position: new google.maps.LatLng(latitude,longitude),
                 map: googleMapObject,
                 information: information
             }
         );
+
+        newMarker.addListener("mouseover",function(){
+            $markerInformationSpan.html(this.information);
+        });
     }
 });
