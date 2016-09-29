@@ -28,7 +28,11 @@ $(function () {
             };
             googleMapObject = new google.maps.Map($googleMapSection, googleMapConfig);
         } ();
-        createMarker(24, 134, 3);
+        createMarker(24, 134, 1);
+        createMarker(-24, -134, 2);
+        createMarker(-54, 234, 2);
+        createMarker(-14, 44, 2);
+
     } ();
 
     //application logic
