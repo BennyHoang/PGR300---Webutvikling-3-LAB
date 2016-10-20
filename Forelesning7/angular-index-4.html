@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" ng-ap="carApp">
+<html class="no-js" ng-app="carApp">
 <!--<![endif]-->
 
 <head>
@@ -20,11 +20,16 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-	<section>
 
-		<article>
+	<section ng-controller="CarController as carCtrl">
+        <input ng-click="carCtrl.changeVisibility()" type="button" value="Skjul/vis">
+        
+		<article ng-repeat="car in carCtrl.carlist" ng-show="carCtrl.shouldShow">
+            <h3>{{car.modell}}</h3>
+            <p>{{car.beskrivelse}}</p>
+            <p>pris: {{car.pris}}</p>
+            <img ng-src="{{car.bildeSrc}}" alt="{{car.modell}}">
 		</article>
-
 	</section>
 
 	<script>
@@ -32,7 +37,11 @@
         var carApp = angular.module("carApp", []);
 
         carApp.controller("CarController", function(){
-            
+            this.shouldShow = false;
+
+            this.changeVisibility = function(){
+                this.shouldShow = !this.shouldShow;
+            };
             this.carlist = [
                 {
                     modell: "Toyota",
@@ -53,10 +62,6 @@
                     bildeSrc: "img/car-3.jpg"
                 }
             ];
-
-            
-
-
 
         });
 
