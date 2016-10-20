@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" ng-app>
+<html class="no-js" ng-app="articleApp">
 <!--<![endif]-->
 
 <head>
@@ -12,6 +12,7 @@
 	<title>Angular test 3</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="react-angular-bootstrap-local/js/angular.min.js"></script>    
 </head>
 
 <body>
@@ -19,10 +20,32 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+    <section ng-controller="ArticleController as articleCtrl">
+
+        <article>
+            <h3>{{articleCtrl.articleJSON.title}}</h3>
+            <p>{{articleCtrl.articleJSON.description}}</p>
+            <img ng-src="{{articleCtrl.articleJSON.imageSrc}}" alt="{{articleCtrl.articleJSON.description}}">
+        </article>
+
+    </section>
+
+    <script>
+        var articleApp = angular.module("articleApp", []);
+
+        articleApp.controller("ArticleController", function(){
+
+            this.articleJSON = {
+                title: "En vakker bil",
+                description: "A very modern car.",
+                imageSrc: "img/car-1.jpg"
+            };
 
 
 
-	<script src="react-angular-bootstrap-local/js/angular.min.js"></script>
+        });
+
+    </script>
 </body>
 
 </html>
