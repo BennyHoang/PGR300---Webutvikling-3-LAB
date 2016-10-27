@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>React Test 2</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="react-angular-bootstrap-local/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+	<div id="mainPageHeaderContainer"></div>
+	<div id="mainNavContainer"></div>
+	<div id="mainContentContainer"></div>
+
+	<script src="react-angular-bootstrap-local/js/react.min.js"></script>
+	<script src="react-angular-bootstrap-local/js/react-dom.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+
+	<script type="text/babel">
+
+        var Article = React.createClass({
+            render: function(){
+                return(
+                    <article className="col col-md-4">
+                        <h3>{this.props.title}</h3>
+                        <p>{this.props.text}</p>                            
+                    </article>
+                );
+            }
+        });
+
+        ReactDOM.render(
+            <div className="container">
+                <section className="row">
+                    <Article title="Zombier" text="Zombier er levende døde mennesker som liker å spise levende mennesker"></Article>
+                    <Article title="Klovner" text="Klovner er skremmende vesener som liker å tulle og skremme folk"></Article>
+                </section>
+            </div>,
+            document.getElementById("mainContentContainer")
+        )
+    </script>
+</body>
+
+</html>
