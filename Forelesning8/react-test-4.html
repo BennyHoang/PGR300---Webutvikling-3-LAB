@@ -9,7 +9,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>React Test 3</title>
+	<title>React Test 4</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="react-angular-bootstrap-local/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -28,33 +28,26 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
 
 	<script type="text/babel">
-        var Article = React.createClass({
-            render: function(){
-                return(
-                     <article className="col col-md-4">
-                        <h3>{this.props.title}</h3>
-                        <p>{this.props.text}</p>
-                    </article>
-                );
-            }
-        });
 
-        var ArticleBox = React.createClass({
-            render: function(){
-                return(
-                    <div className="container">
-                        <section className="row">
-                            <Article title="Zombier" text="Zombier er levende døde mennesker som liker å spise levende mennesker"></Article>
-                            <Article title="Klovner" text="Klovner er skremmende vesener som liker å tulle og skremme folk"></Article>
-                        </section>
-                    </div>   
-                );
+        //ECMA SCRIPT 6 POW POW POW
+        class Nav extends React.Component{
+            constructor(props){
+                super(props)
             }
-        });
+            render(){
+                return(
+                    <ul>
+                        <li><a href="#ng">Home</a></li>
+                        <li><a href="#ng">Products</a></li>
+                        <li><a href="#ng">Contact us</a></li>
+                    </ul>
+                )
+            }
+        };
 
         ReactDOM.render(
-            <ArticleBox></ArticleBox>,
-            document.getElementById("mainContentContainer")
+            <Nav></Nav>,
+            document.getElementById("mainNavContainer")
         );
     </script>
 </body>

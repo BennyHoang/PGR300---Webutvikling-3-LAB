@@ -9,7 +9,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>React Test 3</title>
+	<title>React Test 5</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="react-angular-bootstrap-local/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -28,12 +28,33 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
 
 	<script type="text/babel">
+        var halloweenJSON = {
+            "halloweenCostumes": [
+                {
+                    "title": "Cowboy",
+                    "description": "Cowboy costume with horse",
+                    "imageSrc": "cowboy.jpg"
+                },
+                {
+                    "title": "Ketchup",
+                    "description": "Dress up as a ketchup bottle",
+                    "imageSrc": "ketchup.jpg"
+                },
+                {
+                    "title": "Toddler Yoda",
+                    "description": "Let Your Baby be Yoda",
+                    "imageSrc": "toddler-yoda-costume.jpg"
+                }
+            ]
+        };
+
         var Article = React.createClass({
             render: function(){
                 return(
-                     <article className="col col-md-4">
+                    <article className="col col-md-6">
                         <h3>{this.props.title}</h3>
-                        <p>{this.props.text}</p>
+                        <p>{this.props.children}</p>
+                        <img className="img-responsive" src={"bilder/" + this.props.imageSrc} alt={this.props.title} />
                     </article>
                 );
             }
@@ -41,21 +62,27 @@
 
         var ArticleBox = React.createClass({
             render: function(){
+
+                var articles = this.props.list.map(function(article){
+                    return(
+                        <Article title={article.title} imageSrc={article.imageSrc}>{article.description}</Article>
+                    )
+                });
+
                 return(
                     <div className="container">
                         <section className="row">
-                            <Article title="Zombier" text="Zombier er levende døde mennesker som liker å spise levende mennesker"></Article>
-                            <Article title="Klovner" text="Klovner er skremmende vesener som liker å tulle og skremme folk"></Article>
+                            {articles}
                         </section>
-                    </div>   
-                );
+                    </div>
+                )
             }
         });
 
         ReactDOM.render(
-            <ArticleBox></ArticleBox>,
+            <ArticleBox list={halloweenJSON.halloweenCostumes}></ArticleBox>,
             document.getElementById("mainContentContainer")
-        );
+        )
     </script>
 </body>
 
