@@ -32,6 +32,23 @@
                 getInitialState: function(){
                     return ({counter: 10})
                 },
+                componentWillMount: function(){
+                    alert("component bitches");
+                },
+                componentDidMount:function(){
+                    alert("component mounted");
+                },
+                shouldComponentUpdate: function(nextProps, nextState){
+                    alert("neste state " + nextState.counter);
+                    if(this.state.counter === nextState.counter){
+                        return false;
+                    }else{
+                        return true;
+                    }
+                },
+                componentDidUpdate: function(prevProps, prevState){
+                    alert("State før:" + prevState.counter + " state nå" + this.state.counter)
+                },
                 inkrementer: function(){
                     var counterInc = this.state.counter;
                     counterInc++;

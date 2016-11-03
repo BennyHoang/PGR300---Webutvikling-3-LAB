@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="react-angular-bootstrap-local/css/bootstrap.min.css">
+</head>
+
+<body>
+	<!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+	<div id="mainPageHeaderContainer"></div>
+	<div id="mainNavContainer"></div>
+	<div id="mainContentContainer"></div>
+	<script src="react-angular-bootstrap-local/js/react.min.js"></script>
+	<script src="react-angular-bootstrap-local/js/react-dom.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+
+	<script type="text/babel">
+        var Kokosbruk = React.createClass({
+            getInitialState: function(){
+                return {kokosbrukliste: []};
+            },
+            leggTilBruk: function(){
+                var forslag = document.getElementById("forslagTxt").value;
+                var liste = this.state.kokosbrukliste;
+                liste.push(forslag);
+                this.setState({kokosbrukliste: liste});
+            },
+            render: function(){
+                var kokosbruklisteJSX = 
+                this.state.kokosbrukliste.map(function(bruk){
+                    return(
+                        <li>{bruk}</li>
+                    );
+                });
+                    var tittel = (<h3> legg in forslag til bruk av kokos</h3>);
+                
+                return (
+                    <section>
+                        {tittel}
+                        <label>
+                            <input id="forslagTxt" type="text"/>
+                        </label>
+                        <input onClick={this.leggTilBruk} type="button" value="Legg til forslag"/>
+                        <h4>Forslag</h4>
+                        <ul>
+                            {kokosbruklisteJSX}
+                        </ul>
+                    </section>
+                )
+            }
+        });
+        ReactDOM.render(
+            <Kokosbruk></Kokosbruk>,
+            document.getElementById("mainNavContainer")
+        );
+
+    </script>
+
+</body>
+
+</html>
