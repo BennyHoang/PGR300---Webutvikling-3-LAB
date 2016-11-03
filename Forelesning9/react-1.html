@@ -15,9 +15,9 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div id="mainPageHeader"></div>
-        <div id="mainNav"></div>
-        <div id="mainContent"></div>
+        <div id="mainPageHeaderContainer"></div>
+        <div id="mainNavContainer"></div>
+        <div id="mainContentContainer"></div>
         <script src="react-angular-bootstrap-local/js/react.min.js"></script>
         <script src="react-angular-bootstrap-local/js/react-dom.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
@@ -26,13 +26,75 @@
             var MainHeader = React.createClass({
                 render: function(){
                     return(
-                        {/*this is how u comment in BABEL BABY*/}
+                        
                         <header className="page-header">
                             <h1>Kokos fan club </h1>
                         </header>
                     )
                 }
             });
+
+            ReactDOM.render(
+                <MainHeader></MainHeader>,
+                document.getElementById("mainPageHeaderContainer")
+            );
+
+            var MainNav = React.createClass({
+                render: function(){
+                    return(
+                        <nav>
+                            <ul>
+                                <li><a href="#ng">Home</a></li>
+                                <li><a href="#ng">About</a></li>
+                                <li><a href="#ng">Contact</a></li>
+                            </ul>
+                        </nav>
+                    )
+                }
+            });
+
+            ReactDOM.render(
+                <MainNav></MainNav>,
+                document.getElementById("mainNavContainer")
+            );
+
+            var Article = React.createClass({
+                render:function(){
+                    return(
+                        <article>
+                            <h3>{this.props.title}</h3>
+                            <p>{this.props.children}</p>
+                            <img src={this.props.src}/>
+                        </article>
+                    )
+                }
+            });
+
+        var Search = React.createClass({
+            render: function(){
+                return(
+                    <section>
+                        <input type="text" placeholder="søk.."/>
+                        <input type="button" value="søk"/>
+                    </section>
+                )
+            }
+        });
+
+
+        ReactDOM.render(
+            <main>
+                <Article title="Kokos er sunt" src="kokos.jpg">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                Officia obcaecati voluptas explicabo aliquam minus ab, aut mollitia, voluptatum esse officiis, reiciendis aliquid.</Article>
+                <Article title="Kokos er sunt" src="kokos.jpg">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                Officia obcaecati voluptas explicabo aliquam minus ab, aut mollitia, voluptatum esse officiis, reiciendis aliquid.</Article>
+                <Search></Search>
+                </main>,
+            document.getElementById("mainContentContainer")
+        );
+
+    
+  
         </script>
 
     </body>
