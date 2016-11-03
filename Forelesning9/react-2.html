@@ -32,11 +32,16 @@
                 getInitialState: function(){
                     return ({counter: 10})
                 },
+                inkrementer: function(){
+                    var counterInc = this.state.counter;
+                    counterInc++;
+                    this.setState({counter: counterInc});
+                },
                 render: function(){
                     return(
                         <section>
                             <h3>Incrementatoren</h3>
-                            <input type="button" value="inc"/>
+                            <input onClick={this.inkrementer} type="button" value="inc"/>
                             <p>Tallet er nå på {this.state.counter}</p>
                         </section>
                     )
