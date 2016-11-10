@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<funFacts>
+  
+  <funFact>
+    <id>1000</id>
+    <fact>Han er 70 år gammel</fact>
+  </funFact>
+  
+  <funFact>
+    <id>1001</id>
+    <fact>Han er 1.83 Høy</fact>
+  </funFact>
+  
+  <funFact>
+    <id>1002</id>
+    <fact>Han vil bygge mur mellom Mexico og USA</fact>
+  </funFact>
+  
+</funFacts>

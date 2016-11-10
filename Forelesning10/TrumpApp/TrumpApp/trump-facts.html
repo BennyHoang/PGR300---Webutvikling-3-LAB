@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html ng-app="trumpApp">
+<head>
+    <title>Trump facts</title>
+	<meta charset="utf-8" />
+</head>
+<body ng-controller="TrumpController as trumpCtrl">
+<div>
+    <header>
+        <h1>Trump facts</h1>
+    </header>
+    <section>
+        <h3>Legg til ny fakta</h3>
+        <label>Id
+            <input type="text" ng-model="trumpCtrl.id"/>
+        </label>
+        <label>Fakta
+            <input type="text" ng-model="trumpCtrl.fact"/>
+        </label>
+        <input type="button" ng-click="trumpCtrl.addFact()" value="Legg til fakta"/>
+    </section>
+    <section>
+        <article ng-repeat="factObject in trumpCtrl.factList">
+            <h4>{{factObject.funFact.id}}</h4>
+            <p>{{factObject.funFact.fact}}</p>
+        </article>
+    </section>
+</div>
+<script src="react-angular-bootstrap-local/js/angular.min.js"></script>
+<script>
+    var trumpApp = angular.module("trumpApp", []);
+    trumpApp.controller("TrumpController", ["$http", function($http) {
+
+        var _this = this;
+        _this.id = "";
+        _this.fact = "";
+        //_this.factList = [{ funFact: { id: "999", fact: "Test" } }];
+        
+        _this.addFact = function() {
+            var addFactUrl = "api/trump/addfact";
+            
+            $http
+                $post(
+                    addFactUrl,
+                    JSON.stringify({id: "noe", fact: "noe"}),
+                    {
+                        headers: {
+                            "Content-Type": "application/json"
+                        }                        
+                    }
+                )
+                $then(
+                    function(response) {
+                        
+                    },
+                    function(response) {
+                        
+                    })
+        }//end addFact
+
+        var getTrumpFacts = function () {
+            var getTrumpFactsUrl = "api/trump/getfacts";
+            $http
+                .get(getTrumpFactsUrl)
+                .then(
+                    function (response) {
+                        console.log("OK" + response);
+                        _this.factList = response.data;
+                    },
+                    function(response) {
+                        console.log("!OK" + response);
+                    }
+                )
+        }();
+    }]);//end of TrumpController
+</script>
+</body>
+</html>
