@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TrumpApp.Models
 {
-    class FunFact
+    public class FunFact
     {
         public int Id { get; set; }
-        public string fact { get; set; }
+        public String Fact { get; set; }
     }
 }

@@ -40,18 +40,20 @@
             var addFactUrl = "api/trump/addfact";
             
             $http
-                $post(
+                .post(
                     addFactUrl,
-                    JSON.stringify({id: "noe", fact: "noe"}),
+                    JSON.stringify({id: _this.id, fact: _this.fact}),
                     {
                         headers: {
                             "Content-Type": "application/json"
                         }                        
                     }
                 )
-                $then(
-                    function(response) {
-                        
+                .then(
+                    function (response) {
+                        var id = response.data.Id;
+                        var fact = response.data.Fact;
+                        _this.factList.push({funFact: {id: id, fact: fact}});
                     },
                     function(response) {
                         
