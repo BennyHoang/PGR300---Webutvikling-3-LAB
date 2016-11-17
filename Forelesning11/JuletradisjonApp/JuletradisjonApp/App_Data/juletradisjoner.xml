@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<juletradisjoner>
+  <juletradisjon>
+    <id>1000</id>
+    <tekst>Spise ribbe</tekst>
+    <opprinnelse>Førkristen</opprinnelse>
+  </juletradisjon>
+  <juletradisjon>
+    <id>1001</id>
+    <tekst>Juletre</tekst>
+    <opprinnelse>Germania</opprinnelse>
+  </juletradisjon>
+  <juletradisjon>
+    <id>1002</id>
+    <tekst>Julenissen</tekst>
+    <opprinnelse>Østromerske riket</opprinnelse>
+  </juletradisjon>
+</juletradisjoner>

@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html ng-app="juletradisjonApp">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="react-angular-bootstrap-local/js/angular.min.js"></script>
+</head>
+<body ng-controller="JuletradisjonController as juletradisjonCtrl">
+    <section>
+        <h3>Adminstrer juletradisjoner</h3>
+        <table>
+            <tr>
+                <td>id</td>
+                <td><input type="text" ng-model="juletradisjonCtrl.id" /></td>
+                <td><input ng-click="juletradisjonCtrl.getJuletradisjon()" type="button" value="Hent" /></td>
+            </tr>
+            <tr>
+                <td>Tekst</td>
+                <td><input type="text" ng-model="juletradisjonCtrl.tekst" /></td>
+            </tr>
+            <tr>
+                <td>Opprinnelse</td>
+                <td><input type="text" ng-model="juletradisjonCtrl.opprinnelse" /></td>
+            </tr>
+        </table>
+        <input ng-click="juletradisjonCtrl.putJuletradisjon()" type="button" value="Endre juletradisjon" />
+        <input ng-click="juletradisjonCtrl.deleteJuletradisjon()" type="button" value="slett juletradisjon"/>
+        <input ng-click="juletradisjonCtrl.postJuletradisjon()" type="button" value="post juletradisjon"/>
+
+    </section>
+
+    <script>
+        var juletradisjonApp = angular.module("juletradisjonApp", []);
+
+        juletradisjonApp.controller("JuletradisjonController", [
+            "$http", function ($http) {
+                var _this = this;
+
+                _this.id = "1000";
+                _this.tekst = "test";
+                _this.opprinnelse = "Juleland";
+
+                _this.postJuletradisjon = function() {
+                    var postJuletradisjonUrl = "api/Juletradisjon/PostJuletradisjon";
+                    $http
+                        .post(
+                            postJuletradisjonUrl,
+                            JSON.stringify({ id: _this.id, tekst: _this.tekst, opprinnelse: _this.opprinnelse }),
+                            {
+                                headers: { "Content-Type": "application/json" }
+                            }
+                        )
+                        .then(
+                            function(response) {
+                                var id = response.data.juletradisjon.id;
+                                var tekst = response.data.juletradisjon.tekst;
+                                var opprinnelse = response.data.juletradisjon.opprinnelse;
+
+                                _this.id = id;
+                                _this.tekst = tekst;
+                                _this.opprinnelse = opprinnelse;
+                            },
+                            function(response) {
+                                console.log(response);
+                            }
+                        );
+                };
+
+                _this.putJuletradisjon = function () {
+                    var putJuletradisjonUrl = "api/Juletradisjon/PutJuletradisjon";
+
+                    $http
+                        .put(
+                            putJuletradisjonUrl,
+                            JSON.stringify(
+                                {
+                                    id: _this.id,
+                                    tekst: _this.tekst,
+                                    opprinnelse: _this.opprinnelse
+                                }
+                            ),
+                            {
+                                headers: { "Content-Type": "application/json" }
+                            }
+                        )
+                        .then(
+                            function (response) {
+                                var tekst = response.data.juletradisjon.tekst;
+                                var opprinnelse = response.data.juletradisjon.opprinnelse;
+                                _this.tekst = tekst;
+                                _this.opprinnelse = opprinnelse;
+                            },
+                            function (response) {
+                                console.log(response);
+                            }
+                        );
+                };
+
+                _this.getJuletradisjon = function () {
+                    var getJuletradisjonUrl = "api/Juletradisjon/GetJuletradisjon";
+
+                    $http
+                        .get(
+                            getJuletradisjonUrl,
+                            {
+                                params: {
+                                    id: _this.id
+                                }
+                            }
+                        )
+                        .then(
+                            function (response) {
+                                var tekst = response.data.juletradisjon.tekst;
+                                var opprinnelse = response.data.juletradisjon.opprinnelse;
+
+                                _this.tekst = tekst;
+                                _this.opprinnelse = opprinnelse;
+                            },
+                            function (response) {
+                                console.log(response);
+                            }
+                        );
+                };
+
+                _this.deleteJuletradisjon = function () {
+                    var deleteJuletradisjonUrl = "api/Juletradisjon/DeleteJuletradisjon";
+
+                    $http
+                        .delete(
+                            deleteJuletradisjonUrl,
+                            {
+                                params: {
+                                    id: _this.id
+                                }
+                            }
+                        )
+                        .then(
+                            function (response) {
+                                var tekst = response.data.juletradisjon.tekst;
+                                var opprinnelse = response.data.juletradisjon.opprinnelse;
+                                _this.tekst = tekst;
+                                _this.opprinnelse = opprinnelse;
+                            },
+                            function (response) {
+                                console.log(response);
+                            }
+                        );
+                };
+            }
+        ]);
+    </script>
+</body>
+</html>
