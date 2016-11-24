@@ -2,32 +2,55 @@
 <html ng-app="uploadApp">
 <head>
     <title>Upload App</title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
 </head>
 <body ng-controller="UploadController as uploadCtrl">
 
-<section>
-    <h3>Velg bilde å laste opp</h3>
-    <form>
-        <input type="file" onchange="angular.element(this).scope().setImageToUpload()"/>
-        <input type="submit" value="Last opp bilde"/>
-    </form>
-</section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
-<script>
-    var uploadApp = angular.module("uploadApp", []);
+    <section>
+        <h3>Velg bilde å laste opp</h3>
+        <form ng-submit="uploadCtrl.uploadImage()">
+            <input type="file" onchange="angular.element(this).scope().setImageToUpload(this.files)" />
+            <input type="submit" value="Last opp bilde" />
+        </form>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <script>
+        var uploadApp = angular.module("uploadApp", []);
 
-    uploadApp.controller("UploadController", ["$http", "$scope", function($http, $scope) {
+        uploadApp.controller("UploadController", ["$http", "$scope", function ($http, $scope) {
 
-        var _this = this;
+            var _this = this;
 
-        _this.imageToUpload = {};
+            _this.imageToUpload = {};
 
-        $scope.setImageToUpload = function() {
-            console.log("HEI");
-        }
+            $scope.setImageToUpload = function (files) {
+                _this.imageToUpload = files[0];
+            };
 
-    }]);
-</script>
+            _this.uploadImage = function () {
+
+                var uploadImageUrl = "api/UploadImage/UploadImage";
+
+                var formData = new FormData();
+                formData.append("file", _this.imageToUpload);
+
+                $http
+                    .post(
+                        uploadImageUrl,
+                        formData,
+                        {
+                            withCredentials: true,
+                            headers: {
+                                "Content-Type": undefined
+                            },
+                            transformRequest: angular.identity
+                        }
+                    )
+
+
+            };
+
+        }]);
+    </script>
 </body>
 </html>
