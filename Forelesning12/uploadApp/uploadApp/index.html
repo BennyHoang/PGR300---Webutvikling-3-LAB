@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html ng-app="uploadApp">
+<head>
+    <title>Upload App</title>
+	<meta charset="utf-8" />
+</head>
+<body ng-controller="UploadController as uploadCtrl">
+
+<section>
+    <h3>Velg bilde å laste opp</h3>
+    <form>
+        <input type="file" onchange="angular.element(this).scope().setImageToUpload()"/>
+        <input type="submit" value="Last opp bilde"/>
+    </form>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script>
+    var uploadApp = angular.module("uploadApp", []);
+
+    uploadApp.controller("UploadController", ["$http", "$scope", function($http, $scope) {
+
+        var _this = this;
+
+        _this.imageToUpload = {};
+
+        $scope.setImageToUpload = function() {
+            console.log("HEI");
+        }
+
+    }]);
+</script>
+</body>
+</html>
