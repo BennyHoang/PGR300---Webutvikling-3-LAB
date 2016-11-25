@@ -4,11 +4,8 @@ var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
     filename: "index.html",
     inject: "body"
 });
-
 module.exports = {
-  
     entry: __dirname + "/app/index.js",
-    
     module: {
         loaders: [
             {
@@ -18,12 +15,9 @@ module.exports = {
             }
         ]
     },
-    
     output: {
         filename: "transformed.js",
         path: __dirname + "/build"
     },
-    
     plugins: [HTMLWebpackPluginConfig]
-    
 };
